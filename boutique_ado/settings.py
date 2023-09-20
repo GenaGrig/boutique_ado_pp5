@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu104.gitpod.io',
+    '127.0.0.1',
 ]
 
 
