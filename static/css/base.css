@@ -87,6 +87,30 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important; /* override Bulma's default */
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: #222;
+    color: white !important; /* override Bulma's default */
+    border: 1px solid black;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */

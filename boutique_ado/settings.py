@@ -31,6 +31,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu104.gitpod.io',
+]
+
 
 # Application definition
 
