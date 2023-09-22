@@ -10,8 +10,23 @@ def all_products(request):
     products = Product.objects.all()    # This will return all the products from the database
     query = None
     categories = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:    # This will check if the sort key is in the request.GET dictionary
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))    # This will order the products by the name field in the database
+                
+            if 'direction' in request.GET:    # This will check if the direction key is in the request.GET dictionary
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)    # This will order the products by the sortkey
+        
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')    # This will split the category string into a list of individual categories
             products = products.filter(category__name__in=categories)    # This will filter the products by the categories that are in the categories list
@@ -25,11 +40,14 @@ def all_products(request):
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+            
+    current_sorting = f'{sort}_{direction}'    # This will be used to display the current sorting in the sort by menu
 
     context = {
         'products': products,
         'search_term': query,    # This will be used to display the search term in the search box after the search has been performed
         'current_categories': categories,    # This will be used to display the categories that are currently being filtered by in the category filter menu
+        'current_sorting': current_sorting,    # This will be used to display the current sorting in the sort by menu
     }
 
     return render(request, 'products/products.html', context)
