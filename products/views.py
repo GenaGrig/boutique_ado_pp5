@@ -20,7 +20,8 @@ def all_products(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))    # This will order the products by the name field in the database
-                
+            if sortkey == 'category':
+                sortkey = 'category__name'
             if 'direction' in request.GET:    # This will check if the direction key is in the request.GET dictionary
                 direction = request.GET['direction']
                 if direction == 'desc':
