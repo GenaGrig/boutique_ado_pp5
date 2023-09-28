@@ -25,7 +25,7 @@
                 <div class="col-9">
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                    <p class="my-0 small text-muted">${{ item.product.price|floatformat:2 }}</p>
+                    <p class="my-0 small text-muted">Price: {{ item.product.price|floatformat:2 }}</p>
                     <p class="my-0 small text-muted">Quantity: {{ item.quantity }}</p>
                 </div>
             </div>
