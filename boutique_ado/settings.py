@@ -27,12 +27,12 @@ SECRET_KEY = 'django-insecure-&_+yi(&26%8=8r#m4=^_-$a0%%()wer@p31guzi$)lh8^s(p#3
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu104.gitpod.io',
+    '8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu105.gitpod.io',
     '127.0.0.1',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu104.gitpod.io',
+    'https://8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu105.gitpod.io',
 ]
 
 
@@ -202,3 +202,6 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
