@@ -24,7 +24,7 @@ class UserProfile(models.Model):
                                       null=True, blank=True)
     default_postcode = models.CharField(max_length=20,
                                         null=True, blank=True)
-    default_country = CountryField(max_length=40,
+    default_country = CountryField(blank_label='Country',
                                        null=True, blank=True)
 
     def __str__(self):
