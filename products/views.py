@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Category
+from .forms import ProductForm
 
 
 def all_products(request):
@@ -65,3 +66,29 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def add_product(request):
+    """ Add a product to the store """
+    
+    if not request.user.is_superuser:    # This will check if the user is a superuser
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+    
+    if request.method == 'POST':    # This will check if the request method is POST
+        form = ProductForm(request.POST, request.FILES)    # This will create an instance of the ProductForm class with the request.POST data and request.FILES data
+        if form.is_valid():    # This will check if the form is valid
+            form.save()    # This will save the form
+            messages.success(request, 'Successfully added product!')    # This will display a success message
+            return redirect(reverse('add_product'))    # This will redirect the user to the add_product page
+        else:
+            messages.error(request, 'Failed to add product. Please ensure the form is valid.')    # This will display an error message
+    else:
+        form = ProductForm()    # This will create an instance of the ProductForm class
+    
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+    
+    return render(request, template, context)
