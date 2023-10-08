@@ -33,12 +33,14 @@ ALLOWED_HOSTS = [
     '8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu105.gitpod.io',
     '127.0.0.1',
     'localhost',
+    'boutique-ado-gg-7d50ad137d96.herokuapp.com/',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-genagrig-boutiqueadopp5-nowvua2sjeb.ws-eu105.gitpod.io',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'https://boutique-ado-gg-7d50ad137d96.herokuapp.com/',
 ]
 
 
