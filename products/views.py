@@ -92,3 +92,31 @@ def add_product(request):
     }
     
     return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ Edit a product in the store """
+    
+    if not request.user.is_superuser:    # This will check if the user is a superuser
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+    
+    product = get_object_or_404(Product, pk=product_id)    # This will return the product with the id that matches the product_id passed in the url
+    if request.method == 'POST':    # This will check if the request method is POST
+        form = ProductForm(request.POST, request.FILES, instance=product)    # This will create an instance of the ProductForm class with the request.POST data, request.FILES data and the product instance
+        if form.is_valid():    # This will check if the form is valid
+            form.save()    # This will save the form
+            messages.success(request, 'Successfully updated product!')    # This will display a success message
+            return redirect(reverse('product_detail', args=[product.id]))    # This will redirect the user to the product_detail page
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')    # This will display an error message
+    else:
+        form = ProductForm(instance=product)    # This will create an instance of the ProductForm class with the product instance
+    
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+    }
+    
+    return render(request, template, context)
