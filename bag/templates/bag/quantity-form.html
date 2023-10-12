@@ -1,6 +1,6 @@
 <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
     {% csrf_token %}
-    <div class="form-group">
+    <div class="form-group w-50">
         <div class="input-group">
             <div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-black rounded-0" 
@@ -29,4 +29,4 @@
     </div>
 </form>
 <a class="update-link text-info"><small>Update</small></a>
-<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+<a class="remove-item text-danger ml-2" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
